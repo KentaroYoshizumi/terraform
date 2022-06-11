@@ -96,4 +96,3 @@ resource "aws_route_table_association" "private-b" {
   subnet_id      = aws_subnet.private-b.id
   route_table_id = aws_route_table.private.id
 }
-EOF
