@@ -2,7 +2,7 @@ resource "aws_subnet" "public-a" {
   vpc_id                  = aws_vpc.main.id
   availability_zone       = "us-east-2a"
   cidr_block              = "10.0.0.0/24"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = true       #サブネットで起動したインスタンスにパブリックIPを許可する
 
   tags = {
     Name = "public-a"
@@ -43,7 +43,7 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "aws-techpit"
+    Name = "aws-terraform-igw"
   }
 }
 
