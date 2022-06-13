@@ -1,4 +1,5 @@
-resource "random_string" "sample" {
+
+ resource "random_string" "sample" {
   length  = 10
   special = false
 }
@@ -8,18 +9,18 @@ resource "aws_db_instance" "db" {
   allocated_storage = 20
   storage_type      = "gp2"
   engine            = "mysql"
-  engine_version    = "5.7.30"
+  engine_version    = "5.7"
   instance_class    = "db.t3.micro"
   multi_az          = true
 
-  name     = "terraform-rds"
-  username = "terraform-rds-user"
+  name     = "terraformRDS"
+  username = "terraformRDSuser"
   password = random_string.sample.result
 
   backup_retention_period = "7"
   backup_window           = "22:29-22:59"
 
-  final_snapshot_identifier = "aws-techpit-db"
+  final_snapshot_identifier = "aws-terraform-db"
 
   db_subnet_group_name   = aws_db_subnet_group.db.name
   vpc_security_group_ids = ["${aws_security_group.db.id}"]
@@ -30,7 +31,7 @@ resource "aws_db_subnet_group" "db" {
   name       = "db"
   subnet_ids = ["${aws_subnet.private-a.id}", "${aws_subnet.private-c.id}"]
   tags = {
-    Name = "aws-terraform-db"
+    Name = "terraformDB"
   }
 }
 
@@ -60,7 +61,7 @@ resource "aws_security_group" "db" {
 
 resource "aws_db_parameter_group" "default" {
   name   = "rds-pg"
-  family = "mysql5.7.30"
+  family = "mysql5.7"
 }
 
 output "db_endpoint" {
