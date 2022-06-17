@@ -19,7 +19,7 @@ resource "aws_cloudfront_distribution" "main" {
 
   origin {
     domain_name = aws_lb.lb.dns_name
-    origin_id   = "alb-techpit-${random_integer.cloudfront.result}"
+    origin_id   = "alb-terraform-${random_integer.cloudfront.result}"
 
     custom_origin_config {
       http_port                = "80"
