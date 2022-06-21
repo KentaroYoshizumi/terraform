@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "main" {
-  bucket = "aws_s3.main"
+  bucket = "terraform.b"
 
   versioning {
     enabled = true
